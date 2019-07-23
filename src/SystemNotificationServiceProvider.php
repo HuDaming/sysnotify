@@ -17,4 +17,9 @@ class SystemNotificationServiceProvider extends ServiceProvider
             return new SystemNotification;
         });
     }
+
+    public function boot()
+    {
+        $this->loadMigrationsFrom(__DIR__.'/migrations');
+    }
 }

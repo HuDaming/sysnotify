@@ -71,4 +71,9 @@ class SystemNotification implements SystemNotificationInterface
     {
         return Notification::where('user_id', auth()->id())->delete();
     }
+
+    public function getNotifyModel()
+    {
+        return new Notify();
+    }
 }
