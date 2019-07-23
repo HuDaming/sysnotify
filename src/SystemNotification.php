@@ -74,6 +74,6 @@ class SystemNotification implements SystemNotificationInterface
 
     public function getNotifyModel()
     {
-        return new Notify();
+        return new SystemNotify();
     }
 }
