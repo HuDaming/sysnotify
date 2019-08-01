@@ -35,6 +35,16 @@ class SystemNotify extends Model
             ->withTrashed();
     }
 
+    public function toNotification()
+    {
+        return [
+            'class' => get_class($this),
+            'title' => $this->title,
+            'body' => $this->body,
+            'created_at' => $this->created_at->toDateTimeString()
+        ];
+    }
+
     /**
      * 获取全部通知
      *

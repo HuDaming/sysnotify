@@ -13,6 +13,8 @@ class SystemNotification implements SystemNotificationInterface
     {
         $attributes = ['user_id' => auth()->id(), 'system_notify_id' => $id];
         if (!Notification::where($attributes)->exists()) {
+            $attributes['data'] = json_encode(SystemNotify::find($id)->toNotification());
+            $attributes['read_at'] = Carbon::now()->toDateTimeString();
             Notification::create($attributes);
         }
         return SystemNotify::findOrFail($id);

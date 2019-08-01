@@ -9,5 +9,5 @@ class SystemNotification extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'system_notify_id', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'system_notify_id', 'data', 'created_at', 'updated_at'];
 }
