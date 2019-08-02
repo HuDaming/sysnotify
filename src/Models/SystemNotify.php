@@ -32,6 +32,7 @@ class SystemNotify extends Model
     {
         return $this->hasMany(SystemNotification::class, 'system_notify_id')
             ->where('user_id', auth()->id())
+            ->where('status', 1)
             ->withTrashed();
     }
 
