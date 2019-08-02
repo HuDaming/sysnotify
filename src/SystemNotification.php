@@ -67,6 +67,8 @@ class SystemNotification implements SystemNotificationInterface
 
             Notification::insert($attributes);
         }
+
+        return $unreadNotifications->count();
     }
 
     public function destroy()
