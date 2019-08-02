@@ -32,7 +32,6 @@ class SystemNotify extends Model
     {
         return $this->hasMany(SystemNotification::class, 'system_notify_id')
             ->where('user_id', auth()->id())
-            ->where('status', 1)
             ->withTrashed();
     }
 
@@ -71,7 +70,10 @@ class SystemNotify extends Model
      */
     public static function unreadNotifications()
     {
-        return self::has('notifications', '<', 1)->recent();
+        return self::has('notifications', '<', 1)
+            ->where('status', true)
+            ->whereNull('deleted_at')
+            ->recent();
     }
 
     /**
@@ -85,6 +87,8 @@ class SystemNotify extends Model
             ->whereHas('notifications', function ($query) {
                 $query->whereNull('deleted_at');
             })
+            ->where('status', true)
+            ->whereNull('deleted_at')
             ->recent();
     }
 
